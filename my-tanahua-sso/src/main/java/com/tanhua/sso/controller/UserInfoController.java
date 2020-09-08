@@ -36,7 +36,7 @@ public class UserInfoController {
         try{
             Boolean saveUserInfo = this.userInfoService.saveUserInfo(param, token);
             if (saveUserInfo) {
-                return ResponseEntity.ok(null);
+               return ResponseEntity.status(HttpStatus.OK).body("ok");
             }
 
         }catch (Exception e){

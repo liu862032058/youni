@@ -8,7 +8,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.rocketmq.spring.core.RocketMQTemplate;
+//import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +38,8 @@ public class UserService {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
-    @Autowired
-    private RocketMQTemplate rocketMQTemplate;
+//    @Autowired
+//    private RocketMQTemplate rocketMQTemplate;
 
 
     public String login(String mobile, String code) {
@@ -96,7 +96,7 @@ public class UserService {
             msg.put("id", user.getId());
             msg.put("mobile", mobile);
             msg.put("date", new Date());
-            rocketMQTemplate.convertAndSend("tanhua-sso-login", msg);
+//            rocketMQTemplate.convertAndSend("tanhua-sso-login", msg);
         }catch (Exception e){
             LOGGER.error("发送消息出错", e);
         }

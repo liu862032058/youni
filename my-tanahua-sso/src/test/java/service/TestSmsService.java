@@ -1,5 +1,6 @@
 package service;
 
+import com.tanhua.sso.MyApplication;
 import com.tanhua.sso.service.SmsService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = MyApplication.class)
 public class TestSmsService {
 
     @Autowired
@@ -16,7 +17,7 @@ public class TestSmsService {
 
     @Test
     public void testSend(){
-        String code = this.smsService.sendSms("18023194448");
+        String code = this.smsService.sendAliSms("18023194448");
         System.out.println(code);
     }
 
