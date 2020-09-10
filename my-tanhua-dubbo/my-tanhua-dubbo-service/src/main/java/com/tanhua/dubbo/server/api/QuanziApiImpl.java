@@ -2,16 +2,16 @@ package com.tanhua.dubbo.server.api;
 
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.mongodb.client.result.DeleteResult;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import server.api.QuanZiApi;
-import server.pojo.Album;
-import server.pojo.Publish;
-import server.pojo.TimeLine;
-import server.pojo.Users;
+import server.pojo.*;
 import server.vo.PageInfo;
 
 import java.util.List;
@@ -68,5 +68,101 @@ public class QuanziApiImpl implements QuanZiApi {
     @Override
     public PageInfo<Publish> queryPublishList(Long userId, Integer page, Integer pageSize) {
         return null;
+    }
+
+    @Override
+    public boolean saveLikeComment(Long userId, String publishId) {
+        //判断是否已经点赞，如果已经点赞就返回
+        Criteria criteria =Criteria.where("userId").is(userId)
+                .and("publishId").is(new ObjectId(publishId))
+                .and("commentType").is(1);
+        Query query = Query.query(criteria);
+        long count = mongoTemplate.count(query, Comment.class);
+        if (count > 0) {
+            return false;
+        }
+
+        //type：评论类型，1-点赞，2-评论，3-喜欢
+        return this.saveComment(userId, publishId, 1, null);
+    }
+
+    @Override
+    public boolean removeComment(Long userId, String publishId, Integer commentType) {
+        //取消点赞
+        Criteria criteria =Criteria.where("userId").is(userId)
+                .and("publishId").is(new ObjectId(publishId))
+                .and("commentType").is(commentType);
+        Query query = Query.query(criteria);
+        DeleteResult deleteResult = mongoTemplate.remove(query, Comment.class);
+        return deleteResult.getDeletedCount()>0;
+    }
+
+    @Override
+    public boolean saveLoveComment(Long userId, String publishId) {
+        //判断是否已经喜欢，如果已经喜欢就返回
+        Criteria criteria =Criteria.where("userId").is(userId)
+                .and("publishId").is(new ObjectId(publishId))
+                .and("commentType").is(3);
+        Query query = Query.query(criteria);
+        long count = mongoTemplate.count(query, Comment.class);
+        if (count > 0) {
+            return false;
+        }
+
+        //type：评论类型，1-点赞，2-评论，3-喜欢
+        return this.saveComment(userId, publishId, 3, null);
+    }
+
+    @Override
+    public boolean saveComment(Long userId, String publishId, Integer type, String content) {
+        try {
+            Comment comment = new Comment();
+            comment.setContent(content);
+            comment.setIsParent(true);
+            comment.setCommentType(type);
+            comment.setPublishId(new ObjectId(publishId));
+            comment.setUserId(userId);
+            comment.setId(ObjectId.get());
+            comment.setCreated(System.currentTimeMillis());
+
+            this.mongoTemplate.save(comment);
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    @Override
+    public Long queryCommentCount(String publishId, Integer type) {
+        Criteria criteria = Criteria.where("publishId").is(new ObjectId(publishId))
+                .and("commentType").is(type);
+        Query query = Query.query(criteria);
+        return this.mongoTemplate.count(query, Comment.class);
+    }
+
+    @Override
+    public Publish queryPublishById(String publishId) {
+        return this.mongoTemplate.findById(new ObjectId(publishId), Publish.class);
+    }
+
+    @Override
+    public PageInfo<Comment> queryCommentList(String publishId, Integer page, Integer pageSize) {
+        PageRequest pageRequest = PageRequest.of(page - 1, pageSize, Sort.by(Sort.Order.asc("created")));
+
+        Query query = Query.query(Criteria.where("publishId").is(new ObjectId(publishId))
+                .and("commentType").is(2)).with(pageRequest);
+
+        List<Comment> commentList = this.mongoTemplate.find(query, Comment.class);
+
+        PageInfo<Comment> pageInfo = new PageInfo<>();
+        pageInfo.setTotal(0);
+        pageInfo.setPageSize(pageSize);
+        pageInfo.setPageNum(page);
+        pageInfo.setRecords(commentList);
+
+        return pageInfo;
     }
 }
