@@ -5,8 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import server.api.RecommendUserApi;
-import server.pojo.RecommendUser;
+import com.tanhua.dubbo.server.pojo.RecommendUser;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest

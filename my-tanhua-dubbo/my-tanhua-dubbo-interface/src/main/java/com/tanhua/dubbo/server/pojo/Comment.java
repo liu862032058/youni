@@ -1,4 +1,4 @@
-package server.pojo;
+package com.tanhua.dubbo.server.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

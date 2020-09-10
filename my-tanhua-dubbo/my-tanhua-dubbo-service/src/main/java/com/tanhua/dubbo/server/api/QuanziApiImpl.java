@@ -3,6 +3,7 @@ package com.tanhua.dubbo.server.api;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.mongodb.client.result.DeleteResult;
+import com.tanhua.dubbo.server.pojo.*;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -10,9 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import server.api.QuanZiApi;
-import server.pojo.*;
-import server.vo.PageInfo;
+import com.tanhua.dubbo.server.vo.PageInfo;
 
 import java.util.List;
 

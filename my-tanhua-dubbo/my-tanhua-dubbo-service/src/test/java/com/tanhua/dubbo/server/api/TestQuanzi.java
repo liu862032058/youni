@@ -7,10 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import server.api.QuanZiApi;
-import server.pojo.Publish;
-import server.pojo.TimeLine;
-import server.vo.PageInfo;
+import com.tanhua.dubbo.server.pojo.Publish;
+import com.tanhua.dubbo.server.pojo.TimeLine;
+import com.tanhua.dubbo.server.vo.PageInfo;
 
 import java.util.Arrays;
 

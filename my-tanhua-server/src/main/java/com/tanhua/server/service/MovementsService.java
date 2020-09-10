@@ -15,9 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import server.api.QuanZiApi;
-import server.pojo.Publish;
-import server.vo.PageInfo;
+import com.tanhua.dubbo.server.api.QuanZiApi;
+import com.tanhua.dubbo.server.pojo.Publish;
+import com.tanhua.dubbo.server.vo.PageInfo;
 
 import java.util.ArrayList;
 import java.util.Arrays;

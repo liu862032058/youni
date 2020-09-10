@@ -1,8 +1,8 @@
-package server.api;
+package com.tanhua.dubbo.server.api;
 
-import server.pojo.Comment;
-import server.pojo.Publish;
-import server.vo.PageInfo;
+import com.tanhua.dubbo.server.vo.PageInfo;
+import com.tanhua.dubbo.server.pojo.Comment;
+import com.tanhua.dubbo.server.pojo.Publish;
 
 public interface QuanZiApi {
 

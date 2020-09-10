@@ -1,7 +1,7 @@
-package server.api;
+package com.tanhua.dubbo.server.api;
 
-import server.pojo.RecommendUser;
-import server.vo.PageInfo;
+import com.tanhua.dubbo.server.vo.PageInfo;
+import com.tanhua.dubbo.server.pojo.RecommendUser;
 
 public interface RecommendUserApi {
 

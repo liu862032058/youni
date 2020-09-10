@@ -13,9 +13,9 @@ import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-import server.api.QuanZiApi;
-import server.pojo.Comment;
-import server.vo.PageInfo;
+import com.tanhua.dubbo.server.api.QuanZiApi;
+import com.tanhua.dubbo.server.pojo.Comment;
+import com.tanhua.dubbo.server.vo.PageInfo;
 
 import java.util.ArrayList;
 import java.util.List;

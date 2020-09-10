@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import server.pojo.Users;
+import com.tanhua.dubbo.server.pojo.Users;
 
 import java.util.Date;
 import java.util.List;

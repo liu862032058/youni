@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.apache.commons.lang3.StringUtils;
-import server.pojo.RecommendUser;
-import server.vo.PageInfo;
+import com.tanhua.dubbo.server.pojo.RecommendUser;
+import com.tanhua.dubbo.server.vo.PageInfo;
 
 import java.util.ArrayList;
 import java.util.Collections;

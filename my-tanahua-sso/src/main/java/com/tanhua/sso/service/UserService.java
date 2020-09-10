@@ -84,7 +84,8 @@ public class UserService {
         try {
             String redisTokenKey = "TOKEN_" + token;
             String redisTokenValue = MAPPER.writeValueAsString(user);
-            redisTemplate.opsForValue().set(redisTokenKey, redisTokenValue, Duration.ofHours(5));
+//            redisTemplate.opsForValue().set(redisTokenKey, redisTokenValue, Duration.ofHours(5));//5小时
+            redisTemplate.opsForValue().set(redisTokenKey, redisTokenValue, Duration.ofDays(7L));
         } catch (Exception e) {
             LOGGER.error("存储token出错", e);
             return null;
@@ -110,7 +111,8 @@ public class UserService {
             if (StringUtils.isEmpty(token)) {
                 return null;
             }
-            redisTemplate.expire(redisTokenKey,3, TimeUnit.HOURS);
+//            redisTemplate.expire(redisTokenKey,24, TimeUnit.HOURS);//24小时
+            redisTemplate.expire(redisTokenKey,7, TimeUnit.DAYS);
             return MAPPER.readValue(tokenDate, User.class);
         }catch (Exception e){
             LOGGER.error("token 出错", e);

@@ -1,6 +1,6 @@
 package service;
 
-import com.tanhua.sso.MyApplication;
+import com.tanhua.sso.MySSOApplication;
 import com.tanhua.sso.service.SmsService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = MyApplication.class)
+@SpringBootTest(classes = MySSOApplication.class)
 public class TestSmsService {
 
     @Autowired

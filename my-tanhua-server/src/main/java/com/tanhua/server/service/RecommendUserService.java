@@ -4,9 +4,9 @@ package com.tanhua.server.service;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.tanhua.server.vo.TodayBest;
 import org.springframework.stereotype.Service;
-import server.api.RecommendUserApi;
-import server.pojo.RecommendUser;
-import server.vo.PageInfo;
+import com.tanhua.dubbo.server.api.RecommendUserApi;
+import com.tanhua.dubbo.server.pojo.RecommendUser;
+import com.tanhua.dubbo.server.vo.PageInfo;
 
 @Service
 public class RecommendUserService {

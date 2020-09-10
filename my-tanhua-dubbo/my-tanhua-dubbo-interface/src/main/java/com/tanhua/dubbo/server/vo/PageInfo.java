@@ -1,4 +1,4 @@
-package server.vo;
+package com.tanhua.dubbo.server.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

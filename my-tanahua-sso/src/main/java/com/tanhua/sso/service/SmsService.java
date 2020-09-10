@@ -68,7 +68,7 @@ public class SmsService {
             result.put("msg", "ok");
 
             //将验证码存储到Redis,2分钟后失效
-            this.redisTemplate.opsForValue().set(redisKey, code, Duration.ofMinutes(5));
+            this.redisTemplate.opsForValue().set(redisKey, code, Duration.ofMinutes(60));
             return result;
         } catch (Exception e) {
             LOGGER.error("发送验证码出错！" + mobile, e);
@@ -133,7 +133,8 @@ public class SmsService {
         params.put("mobile", mobile);
         params.put("tpl_id", "TP1711063");
         // 生成6位数验证
-        params.put("param", ""+RandomUtils.nextInt(100000, 999999));
+//        params.put("param", ""+RandomUtils.nextInt(100000, 999999));
+        params.put("param", "123456");
 
 
         Map<String, String> bodys = new HashMap<String, String>();
@@ -149,17 +150,22 @@ public class SmsService {
              * 相应的依赖请参照
              * https://github.com/aliyun/api-gateway-demo-sign-java/blob/master/pom.xml
              */
-            HttpResponse response = HttpUtils.doPost(url, path, method, headers, params, bodys);
-            //读取服务器返回过来的json字符串数据
-            String str = EntityUtils.toString(response.getEntity());
-            //把json字符串转换成json对象
-            JSONObject jsonResult = JSONObject.parseObject(str);
-
-            int statusCode = response.getStatusLine().getStatusCode();
-//            JsonNode jsonNode = MAPPER.readTree(body);
-                if (statusCode==200) {
-                    return String.valueOf(params.get("param"));
-                }
+            /**
+             * 屏蔽，我只要输入123456
+             *
+             * */
+//            HttpResponse response = HttpUtils.doPost(url, path, method, headers, params, bodys);
+//            //读取服务器返回过来的json字符串数据
+//            String str = EntityUtils.toString(response.getEntity());
+//            //把json字符串转换成json对象
+//            JSONObject jsonResult = JSONObject.parseObject(str);
+//
+//            int statusCode = response.getStatusLine().getStatusCode();
+////            JsonNode jsonNode = MAPPER.readTree(body);
+//                if (statusCode==200) {
+//                    return String.valueOf(params.get("param"));
+//                }
+            return String.valueOf(params.get("param"));
 
         } catch (Exception e) {
             e.printStackTrace();
