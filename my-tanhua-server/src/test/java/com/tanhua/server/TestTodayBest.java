@@ -1,6 +1,8 @@
 package com.tanhua.server;
 
 import com.tanhua.server.service.TodayBestService;
+import com.tanhua.server.vo.PageResult;
+import com.tanhua.server.vo.RecommendUserQueryParam;
 import com.tanhua.server.vo.TodayBest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,12 +24,12 @@ public class TestTodayBest {
         System.out.println(todayBest);
     }
 
-//    @Test
-//    public void testQueryTodayBestList(){
-//        String token = "";
-//        PageResult pageResult = this.todayBestService.queryRecommendUserList(new RecommendUserQueryParam(), token);
-//        System.out.println(pageResult);
-//    }
+    @Test
+    public void testQueryTodayBestList(){
+        String token = "";
+        PageResult pageResult = this.todayBestService.queryRecommendUserList(new RecommendUserQueryParam(), token);
+        System.out.println(pageResult);
+    }
 
 
 }

@@ -28,4 +28,6 @@ public class TestRecommendUserApi {
         System.out.println(this.recommendUserApi.queryPageInfo(1L, 3, 5));
     }
 
+
+
 }
